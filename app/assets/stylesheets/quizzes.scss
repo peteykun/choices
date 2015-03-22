@@ -1,0 +1,197 @@
+// Place all the styles related to the quizzes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@font-face {
+  font-family: 'Open Sans';
+  src: asset-url('OpenSans-Regular.ttf');
+  src: asset-url('OpenSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: 400;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: asset-url('OpenSans-Semibold.ttf');
+  src: asset-url('OpenSans-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: 600;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: asset-url('OpenSans-Light.ttf');
+  src: asset-url('OpenSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: 300;
+}
+
+#quiz {
+  height: 100vh;
+  position: relative;
+
+  #saved {
+    position: absolute;
+    width: 100vw;
+    text-align: center;
+    background-color: #5cb85c;
+    color: #fff;
+    padding: 10px;
+    opacity: 0.85;
+    bottom: 0;
+  }
+
+  #not_saved {
+    position: absolute;
+    width: 100vw;
+    text-align: center;
+    background-color: #d9534f;
+    color: #fff;
+    padding: 10px;
+    opacity: 0.85;
+    bottom: 0;
+  }
+}
+
+#question {
+  font-family: 'Open Sans', sans-serif;
+  float: left;
+  padding: 0 40px;
+  width: 100%;
+  padding-left: 400px;
+  margin-left: -360px;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  height: 96vh;
+  overflow-y: auto;
+
+  #radios {
+    margin-left: 5px;
+
+    label {
+      margin-right: 20px;
+    }
+  }
+
+  #controls {
+    margin-top: 20px;
+
+    .pull-left button {
+      margin-right: 10px;
+    }
+  }
+}
+
+#switcher {
+  float: right;
+  width: 350px;
+  height: 100vh;
+  padding: 10px;
+  text-align: center;
+  border-left: 1px solid #ddd;
+  background-color: #FCFCFC;
+  overflow-y: auto;
+  
+  #pallet {
+    background-color: #F5F5F5;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    width: 250px;
+    padding: 20px 30px;
+    border-radius: 5px;
+    max-height: calc(100vh - 325px);
+    overflow-y: auto;
+
+    b {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    table {
+      margin: 10px auto;
+    }
+  }
+
+  #countdown {
+    background-color: #F5F5F5;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    width: 250px;
+    padding: 20px 30px;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+
+    #timer {
+      font-size: 3em;
+    }
+  }
+
+  #userinfo {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    padding-bottom: 30px;
+    margin: 10px auto 30px auto;
+    border-bottom: 1px solid #ddd;
+    width: 250px;
+
+    #username {
+      font-size: 1.4em;
+      font-weight: 600;
+    }
+
+    #college {
+      font-weight: 400;
+    }
+  }
+}
+
+#switcher .button {
+  background: asset-url('buttons-sprite.png') no-repeat;
+  width: 33px;
+  height: 30px;
+  float: left;
+  line-height: 26px;
+  text-align: center;
+  margin-right: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+}
+
+#switcher .button.not_visited {
+  background-position: -33px -73px;
+  color: #474747;
+  height: 35px;
+  width: 35px;
+  margin-top: 5px;
+}
+
+#switcher .button.not_answered {
+  background-position: -33px -4px;
+  height: 35px;
+  margin-top: 5px;
+  width: 35px;
+}
+
+#switcher .button.answered {
+  background-position: -74px -4px;
+  width: 35px;
+}
+
+#switcher .button.review_answered {
+  background-position: -70px -69px;
+  height: 40px;
+  padding-top: 6px;
+  width: 37px;
+  width: 35px;
+}
+
+#switcher .button.review {
+  background-position: -33px -36px;
+  height: 35px;
+  margin-top: 2px;
+  padding-top: 2px;
+  width: 35px;
+}

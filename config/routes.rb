@@ -58,4 +58,7 @@ Rails.application.routes.draw do
     resources :questions
   end
 
+  resource  :quiz
+  resources :answers
+
 end

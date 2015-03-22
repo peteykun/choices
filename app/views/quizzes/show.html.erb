@@ -1,0 +1,141 @@
+<div id="quiz">
+
+  <div id="saved" style="display: none;">
+    Your response has been saved successfully.
+  </div>
+
+  <div id="not_saved" style="display: none;">
+    There was a problem saving your response. Contact the proctor.
+  </div>
+
+  <div id="question">
+    <h1>Question 1</h1>
+    <hr>
+
+    <div class="panel panel-default question_body">
+      <div class="panel-heading">Question</div>
+      <div class="panel-body">
+        What is the output of:<br><br>#include &lt;stdio.h&gt;<br>int main() {<br> printf("Hello world!\n");<br>}
+      </div>
+    </div>
+
+    <div class="panel panel-default options">
+      <div class="panel-heading">Options</div>
+      <div class="panel-body">
+        <ol type="A">
+          <li>Hello World</li>
+          <li>World Hello</li>
+          <li>Hello</li>
+          <li>World</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="panel panel-default numerical_answer" style="display: none;">
+      <div class="panel-heading">Numerical Answer</div>
+      <div class="panel-body">
+        <input type="number">
+      </div>
+    </div>
+
+    <div id="radios">
+      <label class="radio-inline">
+        <input type="radio" name="correctChoice" value="a" required> A
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="correctChoice" value="b" required> B
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="correctChoice" value="c" required> C
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="correctChoice" value="d" required> D
+      </label>
+    </div>
+
+    <div id="controls">
+      <div class="pull-left">
+        <button class="btn btn-default" id="mark_for_review">Mark for Review &amp; Next</button>
+        <button class="btn btn-default" id="clear_response">Clear Response</button>
+      </div>
+
+      <div class="pull-right">
+        <button class="btn btn-success" id="save_and_next">Save &amp; Next</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="switcher">
+    <div id="userinfo">
+      You are logged in as
+      <div id="username">Soham Pal</div>
+      <div id="college">Techno India Salt Lake</div>
+    </div>
+
+    <div id="countdown">
+      <b>Time Left</b><br>
+
+      <div id="timer">30:00</div>
+    </div>
+
+    <div id="pallet">
+      <b>Question Switcher</b><br><br>
+
+      <table>
+
+        <% (1..@questions.size/4).each do |i| %>
+        <tr>
+          <td><span class="button not_visited" data-type="not_visited" data-id="<%= i   %>"><%= i   %></span><td>
+          <td><span class="button not_visited" data-type="not_visited" data-id="<%= i+1 %>"><%= i+1 %></span><td>
+          <td><span class="button not_visited" data-type="not_visited" data-id="<%= i+2 %>"><%= i+2 %></span><td>
+          <td><span class="button not_visited" data-type="not_visited" data-id="<%= i+3 %>"><%= i+3 %></span><td>
+        </tr>
+        <% end %>
+
+        <tr>
+          <% ((@questions.size/4)*4 + 1..@questions.size).each do |i| %>
+          <td><span class="button not_visited" data-type="not_visited" data-id="<%= i   %>"><%= i   %></span><td>
+          <% end %>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  var time_left = 30 * 60; /* seconds */
+
+  var questions = [
+    <% @questions.each do |question| %>
+    {
+      id: <%= question.id %>,
+      body: '<%= raw question.body %>',
+      type: '<%= question.question_type %>',
+
+      <% answer = question.find_answer_by(@current_user) %>
+
+      <% if answer == nil %>
+      answer: false,
+      review: false,
+      <% else %>
+      answer: <%= answer.answer %>,
+      review: <%= answer.review %>,
+      <% end %>
+
+      <% if question.question_type == 'multiple_choice' %>
+      options: [
+        <% question.options.each do |option| %>
+        {
+          id: <%= option.id %>,
+          body: '<%= option.body %>',
+        },
+        <% end %>  
+      ]
+      <% end %>
+    },
+    <% end %>
+  ];
+</script>
