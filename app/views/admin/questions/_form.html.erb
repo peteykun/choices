@@ -1,0 +1,186 @@
+<%= form_for([:admin, @question], html: { class: 'form' }) do |f| %>
+  <% if @question.errors.any? %>
+    <div class="alert alert-danger">
+      <b><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</b>
+
+      <ul>
+      <% @question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <%= f.label :question_type %><br>
+    <%= f.select :question_type, options_for_select([['Multiple Choice', 'multiple_choice'], ['Numerical', 'numerical']], if params[:question_type] != nil then params[:question_type] elsif @question.question_type != nil then @question.question_type else nil end), {}, {class: 'form-control'} %>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <%= f.label :body %><br>
+    <%= f.text_area :body, class: 'form-control wysihtml5', rows: 6 %>
+  </div>
+  <br>
+
+  <div id="numerical" class="form-part">
+    <div class="form-group">
+      <%= f.label :answer %><br>
+      <%= f.number_field :answer, class: 'form-control' %>
+    </div>
+    <br>
+  </div>
+
+  <div id="multiple_choice" class="form-part">
+    <div id="option_fields">
+      <% if @options != nil and @options.size > 0 %>
+
+        <% @options.each do |value, option| %>
+          <div class="form-group">
+            <label for="options[<%= value %>]">Option <%= value.upcase %></label><br>
+            <%= text_field_tag "options[" + value + "]", option.body, class: 'form-control' %>
+          </div>
+          <br>
+        <% end %>
+
+      <% else %>
+
+        <div class="form-group">
+          <%= label_tag "options[a]", 'Option A' %><br>
+          <%= text_field_tag "options[a]", nil, class: 'form-control' %>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <%= label_tag "options[b]", 'Option B' %><br>
+          <%= text_field_tag "options[b]", nil, class: 'form-control' %>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <%= label_tag "options[c]", 'Option C' %><br>
+          <%= text_field_tag "options[c]", nil, class: 'form-control' %>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <%= label_tag "options[d]", 'Option D' %><br>
+          <%= text_field_tag "options[d]", nil, class: 'form-control' %>
+        </div>
+        <br>
+
+      <% end %>
+    </div>
+
+    <div class="form-group" id="option_radios">
+      <%= label_tag :correct_choice %><br>
+      <% if @options != nil and @options.size > 0 %>
+
+        <% @options.each do |value, option| %>
+          <% unless option.correct %>
+            <label class="radio-inline">
+              <input type="radio" name="correctChoice" value="<%= value %>" required> <%= value.upcase %>
+            </label>
+          <% else %>
+            <label class="radio-inline">
+              <input type="radio" name="correctChoice" value="<%= value %>" required checked="checked"> <%= value.upcase %>
+            </label>
+          <% end %>
+        <% end %>
+
+      <% else %>
+
+        <label class="radio-inline">
+          <input type="radio" name="correctChoice" value="a" required> A
+        </label>
+
+        <label class="radio-inline">
+          <input type="radio" name="correctChoice" value="b" required> B
+        </label>
+
+        <label class="radio-inline">
+          <input type="radio" name="correctChoice" value="c" required> C
+        </label>
+
+        <label class="radio-inline">
+          <input type="radio" name="correctChoice" value="d" required> D
+        </label>
+
+      <% end %>
+
+    </div>
+    
+
+    <button type="button" id="add" class="btn btn-default">Add one more option</button>
+    <button type="button" id="remove" class="btn btn-default">Remove last option</button>
+    <br><br><br>
+
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
+<% end %>
+
+<script>
+  <% if @options != nil and @options.size > 0 %>
+  var fields = <%= @options.size %>;
+  <% else %>
+  var fields = 4;
+  <% end %>
+
+  function show_based_on_type() {
+    $('.form-part').hide();
+    $('.form-part#' + $('#question_question_type').val()).show();
+
+    if($('#question_question_type').val() == "multiple_choice") {
+      $('input[type=radio]').attr('required', 'required');
+    }
+    else {
+      $('input[type=radio]').removeAttr('required');
+    }
+  }
+
+  function add_option() {
+    if(fields == 26) {
+      alert("You can't add any more options!");
+      return;
+    }
+
+    var option_letter_uc = String.fromCharCode(65 + fields);
+    var option_letter_lc = String.fromCharCode(97 + fields);
+
+    $('#option_fields').html($('#option_fields').html() + '<div class="form-group"><label for="options[' + option_letter_lc + ']">Option ' + option_letter_uc + '</label><br><input type="text" name="options[' + option_letter_lc + ']" id="option_' + option_letter_lc + '" class="form-control" /></div><br>');
+
+    $('#option_radios').html($('#option_radios').html() + '<label class="radio-inline"><input type="radio" name="correctChoice" value="' + option_letter_lc + '" required> ' + option_letter_uc + '</label>');
+
+    fields++;
+  }
+
+  function remove_last_option() {
+    if(fields == 1) {
+      alert("You must have at least one option!");
+      return;
+    }
+
+    $('#option_fields div').last().remove();
+    $('#option_fields br').last().remove();
+    $('#option_radios label').last().remove();
+
+    fields--;
+  }
+
+  $(function() {
+    show_based_on_type();
+
+    $('#question_question_type').on('change', show_based_on_type);
+    $('#add').on('click', add_option);
+    $('#remove').on('click', remove_last_option);
+  });
+</script>

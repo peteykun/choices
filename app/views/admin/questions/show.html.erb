@@ -1,0 +1,34 @@
+<h1><%= @question.name %></h1>
+<hr>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Question Body</div>
+  <div class="panel-body">
+    <%= raw @question.body %>
+  </div>
+</div>
+
+<% if @question.question_type == 'multiple_choice' %>
+<div class="panel panel-default">
+  <div class="panel-heading">Options</div>
+  <div class="panel-body">
+    <ol type="A">
+      <% @question.options.each do |option| %>
+      <li><% if option.correct %>&check;<% else %>&#10007;<% end %> <%= option.body %></li>
+      <% end %>
+    </ol>
+  </div>
+</div>
+<% elsif @question.question_type == 'numerical' %>
+<div class="panel panel-default">
+  <div class="panel-heading">Numerical Type Answer</div>
+  <div class="panel-body">
+    <%= @question.answer %>
+  </div>
+</div>
+<% end %>
+
+<br>
+
+<%= link_to 'Edit Question', edit_admin_question_path(@question), class: 'btn btn-default' %>
+<%= link_to 'Back to list of Questions', admin_questions_path, class: 'btn btn-default' %>
