@@ -1,0 +1,19 @@
+<h1>Game Manager</h1>
+<hr>
+
+<% if params[:notice] != nil %>
+  <div class="alert alert-success" role="alert"><b>Success!</b> <%= raw params[:notice] %></div>
+<% end %>
+
+<br>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <b>Start Quiz</b>
+    <p>This will start the quiz.</p>
+  </div>
+  <div class="col-xs-6 col-md-4">
+    <br>
+    <%= link_to 'Start Game', {controller: :game_manager, action: :start}, data: { confirm: "Are you sure?" }, class: 'btn btn-success', style: 'width: 100%' %>
+  </div>
+</div>

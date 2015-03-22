@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+ConfigTable.create(key: 'total_time', value: 1800)
+ConfigTable.create(key: 'correct_marks', value: 4)
+ConfigTable.create(key: 'incorrect_marks', value: 1)
+ConfigTable.create(key: 'start_time', value: nil)

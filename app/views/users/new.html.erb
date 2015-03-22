@@ -1,0 +1,78 @@
+<h1>Register</h1>
+<hr>
+
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-danger">
+      <b><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</b>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :username %>
+    <p>Your username can be a maximum of 8 characters. This will be public during the contest.</p>
+    <%= f.text_field :username, class: 'form-control', maxlength: 8 %>
+  </div>
+
+  <br>
+
+  <br>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <p>Your real name. Yeah, that one. Don't worry, we won't share this with strangers <a href="https://www.youtube.com/watch?v=2rEuie5lpGA" target="_blank">on the internets</a>.</p>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <%= f.label :college %>
+    <p>What college are you from? No, not <a href="http://www.smogon.com/" target="_blank">that one</a>. We mean real world college thingamajigs.</p>
+    <%= f.text_field :college, class: 'form-control' %>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <p>Please enter a valid e-mail address. You will be contacted via e-mail if you win.</p>
+    <%= f.text_field :email, class: 'form-control' %>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <%= f.label :phone %>
+    <p>Please enter a valid phone number. You will be contacted on the phone if you win.</p>
+    <%= f.text_field :phone, class: 'form-control' %>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <%= f.label :password %>
+    <p>Please enter a reasonably secure password. It will not be stored raw, we promise.</p>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <p>Please re-enter your password.</p>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
+<% end %>

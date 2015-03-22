@@ -54,11 +54,24 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
+  root 'quizzes#show'
+
   namespace :admin do
+    root 'questions#index'
     resources :questions
+    resources :settings
+    get 'game_manager', to: 'game_manager#index'
+    get 'game_manager/:action', to: 'game_manager'
   end
 
   resource  :quiz
   resources :answers
+  resources :sessions
+  resources :users
+
+  get 'login',    to: 'sessions#new'
+  get 'register', to: 'users#new'
+  get 'logout',   to: 'sessions#destroy'
+  get 'lobby',    to: 'static_pages#lobby'
 
 end

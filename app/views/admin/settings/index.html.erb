@@ -1,0 +1,48 @@
+<h1>Settings</h1>
+<hr>
+
+<%= form_tag("/admin/settings", method: 'post') do %>
+
+<br>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <b>Total Time</b>
+    <p>The time for which the quiz will be running once it's started.</p>
+  </div>
+  <div class="col-xs-6 col-md-4">
+    <%= number_field_tag :total_time, @total_time, class: 'form-control' %>
+  </div>
+</div>
+
+<br><br>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <b>Correct Marks</b>
+    <p>The marks to be awarded for a correct answer.</p>
+  </div>
+  <div class="col-xs-6 col-md-4">
+    <br>
+    <%= number_field_tag :correct_marks, @correct_marks, class: 'form-control' %>
+  </div>
+</div>
+
+<br><br>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <b>Incorrect Marks</b>
+    <p>The marks to be awarded for an incorrect answer (multiple choice questions only).</p>
+  </div>
+  <div class="col-xs-6 col-md-4">
+    <br>
+    <%= number_field_tag :incorrect_marks, @incorrect_marks, class: 'form-control' %>
+  </div>
+</div>
+
+<br><br>
+
+<%= submit_tag 'Update Settings', class: 'btn btn-success' %>
+
+<% end %>

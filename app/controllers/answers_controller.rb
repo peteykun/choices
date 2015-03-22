@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+  before_action :check_if_logged_in
+  
   def create
     @answer = Answer.new(answer_params)
     @answer.user = current_user

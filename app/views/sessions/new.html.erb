@@ -1,0 +1,23 @@
+<div class="panel panel-default" style="padding: 20px 40px 50px 40px;">
+  <h1>Login</h2>
+  <hr>
+
+  <% if notice != nil %>
+    <div class="alert alert-success" role="alert"><b>Well done!</b> <%= notice %></div>
+  <% elsif @error != nil %>
+    <div class="alert alert-danger" role="alert"><b>Uhh...</b> <%= @error %></div>
+  <% end %>
+  <br>
+
+  <%= form_tag sessions_path do %>
+    <b>Username:</b>
+    <%= text_field_tag 'username', nil, class: 'form-control' %>
+    <br><br>
+
+    <b>Password:</b>
+    <%= password_field_tag 'password', nil, class: 'form-control' %>
+    <br><br>
+    
+    <input type="submit" value="Log me in" class="btn btn-success">
+  <% end %>
+</div>
