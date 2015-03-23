@@ -58,9 +58,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'questions#index'
+    
     resources :questions
-    resources :settings
     resources :users
+
+    get 'settings', to: 'settings#index'
+    post 'settings', to: 'settings#update'
     
     get 'leaderboard', to: 'users#leaderboard'
     get 'game_manager', to: 'game_manager#index'
