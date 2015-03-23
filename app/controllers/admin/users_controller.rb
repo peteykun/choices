@@ -4,12 +4,12 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all.order(:id)
+    @users = User.all.order(:id).paginate(page: params[:page], per_page: 10)
     @sort_by = 'id'
   end
 
   def leaderboard
-    @users = User.all.sort_by(&:score).reverse
+    @users = User.all.sort_by(&:score).reverse.paginate(page: params[:page], per_page: 10)
     @sort_by = 'score'
 
     render 'index'

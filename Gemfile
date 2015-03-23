@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.1.3'
 
 gem 'rails', '4.2.1'
 gem 'mysql2'
@@ -12,6 +12,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'bootstrap-wysihtml5-rails'
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
 gem 'responders', '~> 2.0'
 gem 'bcrypt', '~> 3.1.7'
 
