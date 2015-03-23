@@ -195,3 +195,37 @@
   padding-top: 2px;
   width: 35px;
 }
+
+#keypad {
+  margin-left: 0px;
+  padding-left: 20px;
+  margin-top: 5px;
+  width: 83px;
+  padding-top: 5px;
+  border: 1px solid #CCC;
+  -moz-user-select: none; 
+  -khtml-user-select: none; 
+  -webkit-user-select: none; 
+  -o-user-select: none; 
+
+  .key {
+    width: 20px;
+    height: 20px;
+    display: block;
+    background-color: #ebebeb;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    float: left;
+    cursor: pointer;
+    -moz-user-select: none; 
+    -khtml-user-select: none; 
+    -webkit-user-select: none; 
+    -o-user-select: none; 
+
+    &.key-big {
+      width: 45px;
+    }
+  }
+}

@@ -1,5 +1,29 @@
 var current_question_number = 1;
 
+/* Keypad */
+$(function() {
+  $('#keypad .key').on('click', function() {
+    switch($(this).data('value')) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+        $('input[type=number]').val($('input[type=number]').val() + $(this).data('value'));
+        break;
+
+      case 'clr':
+        $('input[type=number]').val('');
+        break;
+    }
+  });
+});
+
 /* Icons and Questions */
 
 function set_icons() {

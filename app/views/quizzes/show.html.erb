@@ -34,7 +34,32 @@
     <div class="panel panel-default numerical_answer" style="display: none;">
       <div class="panel-heading">Numerical Answer</div>
       <div class="panel-body">
-        <input type="number">
+        <input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+
+        <div id="keypad">
+          <div class="row">
+            <span class="key" data-value="1">1</span>
+            <span class="key" data-value="2">2</span>
+            <span class="key" data-value="3">3</span>
+          </div>
+
+          <div class="row">
+            <span class="key" data-value="4">4</span>
+            <span class="key" data-value="5">5</span>
+            <span class="key" data-value="6">6</span>
+          </div>
+
+          <div class="row">
+            <span class="key" data-value="7">7</span>
+            <span class="key" data-value="8">8</span>
+            <span class="key" data-value="9">9</span><br>
+          </div>
+
+          <div class="row">
+            <span class="key" data-value="0">0</span>
+            <span class="key key-big" data-value="clr">CLR</span>
+          </div>
+        </div>
       </div>
     </div>
 
