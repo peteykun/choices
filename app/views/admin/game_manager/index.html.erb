@@ -7,13 +7,30 @@
 
 <br>
 
+<% if @quiz_running %>
+
 <div class="row">
   <div class="col-xs-12 col-md-8">
     <b>Start Quiz</b>
-    <p>This will start the quiz.</p>
+    <p>The quiz is already running. Would you like to stop it?</p>
   </div>
   <div class="col-xs-6 col-md-4">
     <br>
-    <%= link_to 'Start Game', {controller: :game_manager, action: :start}, data: { confirm: "Are you sure?" }, class: 'btn btn-success', style: 'width: 100%' %>
+    <%= link_to 'Stop Quiz', {controller: :game_manager, action: :stop}, data: { confirm: "Are you sure?" }, class: 'btn btn-danger', style: 'width: 100%' %>
   </div>
 </div>
+
+<% else %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <b>Start Quiz</b>
+    <p>This will erase all answers and start the quiz.</p>
+  </div>
+  <div class="col-xs-6 col-md-4">
+    <br>
+    <%= link_to 'Start Quiz', {controller: :game_manager, action: :start}, data: { confirm: "Are you sure?" }, class: 'btn btn-success', style: 'width: 100%' %>
+  </div>
+</div>
+
+<% end %>
