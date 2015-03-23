@@ -77,6 +77,8 @@
       <b>Time Left</b><br>
 
       <div id="timer">30:00</div>
+
+      <a href="<%= complete_url %>" class="btn btn-default">Submit Now</a>
     </div>
 
     <div id="pallet">
@@ -106,7 +108,11 @@
 </div>
 
 <script>
-  var time_left = 30 * 60; /* seconds */
+  var time_left = <%= @time_remaining %>; /* seconds */
+
+  var timer_completed = function timer_completed () {
+    window.location = '<%= complete_url %>';
+  };
 
   var questions = [
     <% @questions.each do |question| %>
@@ -139,3 +145,5 @@
     <% end %>
   ];
 </script>
+
+<%= javascript_include_tag 'quizzes' %>

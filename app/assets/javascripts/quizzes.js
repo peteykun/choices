@@ -244,7 +244,8 @@ function update() {
   }
   else {
     /* Perform navigation for submission */
-    
+    timer_completed();
+
     return;
   }
   

@@ -1,0 +1,25 @@
+<h1><%= @user.name %></h1>
+<hr>
+
+<% @answers.each do |answer| %>
+<div class="panel <%= if answer.is_correct? then 'panel-success' else 'panel-danger' end %>">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Question <%= answer.question.id %></div>
+  <div class="panel-body">
+    <p><%= raw answer.question.body %></p>
+  </div>
+
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item">
+      <b>Correct answer:</b> <%= answer.question.correct_answer %>
+    </li>
+    <li class="list-group-item">
+      <b>Given answer:</b> <%= answer.given_answer %>
+    </li>
+    <li class="list-group-item">
+      <b>Marks awarded:</b> <%= answer.marks %>
+    </li>
+  </ul>
+</div>
+<% end %>

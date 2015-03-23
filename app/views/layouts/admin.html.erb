@@ -28,6 +28,9 @@
           <li<%= raw ' class="active"' if controller_name == "questions" %>>
             <a href="<%= admin_questions_path %>">Questions <span class="sr-only">(current)</span></a>
           </li>
+          <li<%= raw ' class="active"' if controller_name == "users" %>>
+            <a href="<%= admin_users_path %>">Users <span class="sr-only">(current)</span></a>
+          </li>
           <li<%= raw ' class="active"' if controller_name == "game_manager" %>>
             <a href="<%= admin_game_manager_path %>">Game Manager <span class="sr-only">(current)</span></a>
           </li>

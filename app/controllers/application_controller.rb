@@ -26,4 +26,41 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def time_remaining
+    unless quiz_running?
+      return 0
+    else
+      start_time = ConfigTable.find_by_key('start_time').value.to_time
+      time_to_add = ConfigTable.find_by_key('total_time').value.to_i
+
+      return ((start_time + time_to_add.seconds) - Time.now).round
+    end
+  end
+
+  def quiz_running?
+    start_time = ConfigTable.find_by_key('start_time')
+    time_to_add = ConfigTable.find_by_key('total_time').value.to_i
+
+    # Check if game actually started
+    if start_time == nil or start_time.value == nil
+      return false
+    else
+      start_time = start_time.value.to_time
+    end
+
+    # Check if game expired
+    if start_time + time_to_add.seconds > Time.now
+      return true
+    else
+      return false
+    end
+  end
+
+  def check_if_quiz_running
+    unless quiz_running?
+      redirect_to lobby_path
+    end
+  end
+
 end

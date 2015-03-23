@@ -5,6 +5,17 @@ class Question < ActiveRecord::Base
 
   validates_presence_of :name, :body
 
+  def correct_answer
+    case self.question_type
+    when 'multiple_choice'
+      return self.correct_option.body
+
+    when 'numerical'
+      return self.answer
+      
+    end
+  end
+
   def correct_option
     self.options.find_by_correct(true)
   end

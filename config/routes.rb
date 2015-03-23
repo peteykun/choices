@@ -60,6 +60,9 @@ Rails.application.routes.draw do
     root 'questions#index'
     resources :questions
     resources :settings
+    resources :users
+    
+    get 'leaderboard', to: 'users#leaderboard'
     get 'game_manager', to: 'game_manager#index'
     get 'game_manager/:action', to: 'game_manager'
   end
@@ -73,5 +76,6 @@ Rails.application.routes.draw do
   get 'register', to: 'users#new'
   get 'logout',   to: 'sessions#destroy'
   get 'lobby',    to: 'static_pages#lobby'
+  get 'complete', to: 'static_pages#complete'
 
 end
