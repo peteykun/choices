@@ -88,10 +88,10 @@
 
         <% (1..@questions.size/4).each do |i| %>
         <tr>
-          <td><span class="button not_visited" data-type="not_visited" data-id="<%= i   %>"><%= i   %></span><td>
-          <td><span class="button not_visited" data-type="not_visited" data-id="<%= i+1 %>"><%= i+1 %></span><td>
-          <td><span class="button not_visited" data-type="not_visited" data-id="<%= i+2 %>"><%= i+2 %></span><td>
-          <td><span class="button not_visited" data-type="not_visited" data-id="<%= i+3 %>"><%= i+3 %></span><td>
+          <td><span class="button not_visited" data-type="not_visited" data-id="<%= (i-1)*4 + 1 %>"><%= (i-1)*4 + 1 %></span><td>
+          <td><span class="button not_visited" data-type="not_visited" data-id="<%= (i-1)*4 + 2 %>"><%= (i-1)*4 + 2 %></span><td>
+          <td><span class="button not_visited" data-type="not_visited" data-id="<%= (i-1)*4 + 3 %>"><%= (i-1)*4 + 3 %></span><td>
+          <td><span class="button not_visited" data-type="not_visited" data-id="<%= (i-1)*4 + 4 %>"><%= (i-1)*4 + 4 %></span><td>
         </tr>
         <% end %>
 
