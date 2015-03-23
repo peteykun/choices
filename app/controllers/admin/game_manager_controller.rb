@@ -8,11 +8,13 @@ class Admin::GameManagerController < ApplicationController
   end
 
   def start
-    unless quiz_running?
-      Answer.all.destroy_all
+    if Question.all.size > 1
+      unless quiz_running?
+        Answer.all.destroy_all
 
-      start_time = ConfigTable.find_by_key('start_time')
-      start_time.update(value: Time.now)
+        start_time = ConfigTable.find_by_key('start_time')
+        start_time.update(value: Time.now)
+      end
     end
 
     redirect_to admin_game_manager_path
