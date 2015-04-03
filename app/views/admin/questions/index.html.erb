@@ -6,6 +6,7 @@
     <tr>
       <th>#</th>
       <th>Name</th>
+      <th>Subject</th>
       <th>Type</th>
       <th colspan="3" width="30%">Controls</th>
     </tr>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= question.id %></td>
         <td><%= question.name %></td>
+        <td><%= unless question.subject.nil? then question.subject.name else "" end %></td>
         <td><%= if question.question_type == 'multiple_choice' then "Multiple Choice" elsif question.question_type == 'numerical' then "Numerical" else "Unknown" end %></td>
         <td>
           <%= link_to [:admin, question] do %>

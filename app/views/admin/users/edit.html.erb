@@ -64,6 +64,13 @@
   <br>
 
   <div class="form-group">
+    <%= f.label :subject %><br>
+    <%= f.collection_select :subject_id, Subject.all, :id, :name, {}, class: 'form-control'  %>
+  </div>
+
+  <br>
+
+  <div class="form-group">
     <%= f.label :is_admin %>
     <%= f.check_box :is_admin, class: 'form-control' %>
   </div>

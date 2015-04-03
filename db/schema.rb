@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322131000) do
+ActiveRecord::Schema.define(version: 20150403224944) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(version: 20150322131000) do
     t.string   "name",          limit: 255
     t.integer  "question_type", limit: 4
     t.integer  "answer",        limit: 4
+    t.integer  "subject_id",    limit: 4
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150322131000) do
     t.string   "password_digest", limit: 255
     t.string   "username",        limit: 255
     t.boolean  "is_admin",        limit: 1
+    t.integer  "subject_id",      limit: 4
   end
 
 end

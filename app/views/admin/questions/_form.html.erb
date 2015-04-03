@@ -18,6 +18,12 @@
   <br>
 
   <div class="form-group">
+    <%= f.label :subject %><br>
+    <%= f.collection_select :subject_id, Subject.all, :id, :name, {}, class: 'form-control'  %>
+  </div>
+  <br>
+
+  <div class="form-group">
     <%= f.label :question_type %><br>
     <%= f.select :question_type, options_for_select([['Multiple Choice', 'multiple_choice'], ['Numerical', 'numerical']], if params[:question_type] != nil then params[:question_type] elsif @question.question_type != nil then @question.question_type else nil end), {}, {class: 'form-control'} %>
   </div>

@@ -81,6 +81,6 @@ class Admin::QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:name, :body, :question_type, :answer)
+      params.require(:question).permit(:name, :body, :question_type, :answer, :subject_id)
     end
 end

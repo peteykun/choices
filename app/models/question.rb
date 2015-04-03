@@ -1,7 +1,8 @@
 class Question < ActiveRecord::Base
   enum question_type: [ :multiple_choice, :numerical ]
-  has_many :options
-  has_many :answers
+  has_many    :options
+  has_many    :answers
+  belongs_to  :subject
 
   validates_presence_of :name, :body
 

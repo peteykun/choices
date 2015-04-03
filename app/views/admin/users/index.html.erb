@@ -19,6 +19,7 @@
       <th>#</th>
       <th>Name</th>
       <th>College</th>
+      <th>Subject</th>
       <th>Score</th>
       <th colspan="2" width="20%">Controls</th>
     </tr>
@@ -30,6 +31,7 @@
         <td><%= user.id %></td>
         <td><%= user.name %></td>
         <td><%= user.college %></td>
+        <td><%= unless user.subject.nil? then user.subject.name else "" end %></td>
         <td><%= user.score %></td>
         <td>
           <%= link_to [:admin, user] do %>

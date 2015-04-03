@@ -8,6 +8,13 @@
   </div>
 </div>
 
+<div class="panel panel-default">
+  <div class="panel-heading">Question Subject</div>
+  <div class="panel-body">
+    <%= unless @question.subject.nil? then @question.subject.name else "" end %>
+  </div>
+</div>
+
 <% if @question.question_type == 'multiple_choice' %>
 <div class="panel panel-default">
   <div class="panel-heading">Options</div>

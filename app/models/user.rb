@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   validates                :is_admin, inclusion: { in: [true, false] }
   validates_uniqueness_of  :email, :username
 
-  has_many :answers
+  has_many    :answers
+  belongs_to  :subject
   has_secure_password
 
   def score
