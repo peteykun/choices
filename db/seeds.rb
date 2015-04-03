@@ -12,3 +12,6 @@ ConfigTable.create(key: 'incorrect_marks', value: 1)
 ConfigTable.create(key: 'start_time', value: nil)
 
 User.create(username: 'admin', name: 'Administrator', college: 'NA', email: 'admin@choices.co', phone: '9836543210', password: 'admin', password_confirmation: 'admin', is_admin: true)
+
+Subject.create(name: 'C')
+Subject.create(name: 'Java')
